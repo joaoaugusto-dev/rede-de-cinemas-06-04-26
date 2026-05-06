@@ -1,0 +1,35 @@
+@startuml Diagrama de Casos de Uso - Rede de Cinemas
+skinparam actorStyle awesome
+skinparam usecase {
+    BackgroundColor #F1F1F1
+    BorderColor #333333
+}
+
+actor "Funcionário / Administrador" as Admin
+actor "Espectador" as User
+
+package "Sistema de Gestão de Cinemas" {
+    usecase "Manter Filmes" as UC1
+    usecase "Manter Unidades/Cinemas" as UC2
+    usecase "Gerenciar Sessões" as UC3
+    usecase "Registrar Público Diário" as UC4
+    usecase "Gerar Relatórios de Público" as UC5
+    usecase "Consultar Programação" as UC6
+    usecase "Consultar Detalhes do Filme\n(Elenco, Diretor, Gênero)" as UC7
+    usecase "Realizar Login" as UC8
+    usecase "Cadastrar Conta" as UC9
+}
+
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+Admin --> UC8
+
+User --> UC6
+User --> UC7
+User --> UC8
+User --> UC9
+
+@enduml
