@@ -1,0 +1,33 @@
+@startuml Diagrama de Classes de Domínio
+
+class Cinema {
+    - String nome
+    - String endereco
+    - Integer capacidadeTotal
+}
+
+class Sala {
+    - String nome
+    - Integer capacidade
+}
+
+class Filme {
+    - String titulo
+    - Integer duracao
+    - String sinopse
+    - String elenco
+    - String diretor
+    - String genero
+}
+
+class Sessao {
+    - DateTime dataHoraInicio
+    - DateTime dataHoraFim
+    - Integer publicoRegistrado
+}
+
+Cinema "1" *-- "1..*" Sala
+Sala "1" -- "0..*" Sessao
+Filme "1" -- "0..*" Sessao
+
+@enduml

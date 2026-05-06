@@ -1,0 +1,35 @@
+@startuml Diagrama de Sequência - Gerenciar Sessões
+actor "Administrador" as Admin
+participant "SessaoView" as View
+participant "SessaoController" as Ctrl
+participant "SessaoService" as Svc
+participant "SessaoRepository" as Repo
+database "Database" as DB
+
+Admin -> View : Preencher dados da sessão e salvar
+View -> Ctrl : createSessao(sessaoDTO)
+activate Ctrl
+
+Ctrl -> Svc : agendarSessao(sessaoDTO)
+activate Svc
+
+Svc -> Svc : validarConflitos(horario, sala)
+Svc -> Repo : save(sessaoEntity)
+activate Repo
+
+Repo -> DB : INSERT INTO sessoes...
+activate DB
+DB --> Repo : success
+deactivate DB
+
+Repo --> Svc : sessaoEntity
+deactivate Repo
+
+Svc --> Ctrl : sessaoResponseDTO
+deactivate Svc
+
+Ctrl --> View : 201 Created
+deactivate Ctrl
+
+View --> Admin : Exibir mensagem de sucesso
+@enduml

@@ -1,0 +1,42 @@
+@startuml Diagrama de Sequência - Registrar Público
+actor "Funcionário" as Admin
+participant "RegistroView" as View
+participant "SessaoController" as Ctrl
+participant "SessaoService" as Svc
+participant "SessaoRepository" as Repo
+database "Database" as DB
+
+Admin -> View : Selecionar sessão e informar público
+View -> Ctrl : registrarPublico(sessaoId, qtdPublico)
+activate Ctrl
+
+Ctrl -> Svc : updatePublico(sessaoId, qtdPublico)
+activate Svc
+
+Svc -> Repo : findById(sessaoId)
+activate Repo
+Repo -> DB : SELECT * FROM sessoes...
+activate DB
+DB --> Repo : sessaoEntity
+deactivate DB
+Repo --> Svc : sessaoEntity
+deactivate Repo
+
+Svc -> Svc : validarCapacidade(sessao, qtdPublico)
+Svc -> Repo : save(sessaoEntity)
+activate Repo
+Repo -> DB : UPDATE sessoes SET publico = ...
+activate DB
+DB --> Repo : success
+deactivate DB
+Repo --> Svc : success
+deactivate Repo
+
+Svc --> Ctrl : success
+deactivate Svc
+
+Ctrl --> View : 200 OK
+deactivate Ctrl
+
+View --> Admin : Exibir mensagem de sucesso
+@enduml
