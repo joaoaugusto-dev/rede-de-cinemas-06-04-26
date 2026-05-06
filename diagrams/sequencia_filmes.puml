@@ -1,0 +1,35 @@
+@startuml Diagrama de Sequência - Cadastrar Filme
+
+actor "Administrador" as Admin
+participant "FilmeView" as View
+participant "FilmeController" as Ctrl
+participant "FilmeService" as Svc
+participant "FilmeRepository" as Repo
+database "Database" as DB
+
+Admin -> View : Preencher formulário e salvar
+View -> Ctrl : postMovie(movieDTO)
+activate Ctrl
+
+Ctrl -> Svc : create(movieDTO)
+activate Svc
+
+Svc -> Repo : save(movieEntity)
+activate Repo
+
+Repo -> DB : INSERT INTO filmes...
+activate DB
+DB --> Repo : success
+deactivate DB
+
+Repo --> Svc : movieEntity
+deactivate Repo
+
+Svc --> Ctrl : movieResponseDTO
+deactivate Svc
+
+Ctrl --> View : 201 Created
+deactivate Ctrl
+
+View --> Admin : Exibir mensagem de sucesso
+@enduml

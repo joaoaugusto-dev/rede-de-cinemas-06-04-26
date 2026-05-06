@@ -1,0 +1,15 @@
+@startuml Diagrama de Atividade - Registrar Público Diário
+
+start
+:Selecionar Sessão;
+:Informar quantidade de público;
+if (Público < Capacidade da Sala?) then (sim)
+    :Salvar Registro de Público;
+    :Notificar Sucesso;
+else (não)
+    :Exibir Alerta de Superlotação;
+    :Solicitar Correção;
+    stop
+endif
+stop
+@enduml

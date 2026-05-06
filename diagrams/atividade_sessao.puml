@@ -1,0 +1,16 @@
+@startuml Diagrama de Atividade - Gerenciar Sessões
+
+start
+:Selecionar Filme e Sala;
+:Definir Horário de Início;
+:Calcular Término (Duração + Trailers);
+if (Conflito de Horário ou Intervalo < 20min?) then (sim)
+    :Exibir Erro de Conflito;
+    :Sugerir Próximo Horário Disponível;
+    stop
+else (não)
+    :Confirmar Cadastro da Sessão;
+    :Atualizar Grade de Programação;
+endif
+stop
+@enduml
