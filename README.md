@@ -58,3 +58,25 @@ Interação entre View, Controller, Service e Repository.
 
 ## 🚀 Contextualização
 A rede de cinemas opera em múltiplas cidades, enfrentando desafios como controle de filmes em cartaz, organização de sessões e registro diário de público. Este sistema resolve essas dores centralizando dados de elenco, diretores, gêneros e totalização de público.
+
+---
+
+## ✅ Implementação (UCs Resolvidos)
+
+A implementação atual cobre os principais requisitos operacionais do sistema:
+
+- [x] **UC 1:** [Manter Filmes](./src/views/cli_view.py#L85)
+- [x] **UC 2:** [Manter Unidades](./src/views/cli_view.py#L125)
+- [x] **UC 3:** [Gerenciar Sessões](./src/views/cli_view.py#L168)
+- [x] **UC 4:** [Registrar Público](./src/views/cli_view.py#L239)
+- [x] **UC 5:** [Gerar Relatórios](./src/views/cli_view.py#L283)
+- [x] **UC 6:** [Consultar Programação](./src/views/cli_view.py#L310)
+- [x] **UC 7:** [Consultar Detalhes](./src/views/cli_view.py#L358)
+
+---
+
+## 🛠️ Tecnologias e Arquitetura
+- **Linguagem:** Python
+- **Interface:** CLI Premium (Rich library)
+- **Banco de Dados:** SQLite
+- **Arquitetura:** MVC + Service + Repository
